@@ -42139,6 +42139,7 @@ const main = async () => {
     if (STATE) {
       totalIssues.push(...(await fetchIssues(AUTH_TOKEN, ORG_NAME, REPO_NAME, STATE)))
     } else {
+      console.log(SINCE);
       totalIssues.push(...(await fetchIssues(AUTH_TOKEN, ORG_NAME, REPO_NAME, 'open', SINCE)))
       totalIssues.push(...(await fetchIssues(AUTH_TOKEN, ORG_NAME, REPO_NAME, 'closed', SINCE)))
     }

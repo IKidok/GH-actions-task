@@ -38,7 +38,7 @@ jobs:
           REPO_NAME: 'nest'
           AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           STATE: 'closed'
-      - name: Display amount of prs/issues
+      - name: Display amount of closed prs/issues
         run: |
           echo "The total closed prs ${{ steps.pr-closed.outputs.prs }}"
           echo "The total closed issues ${{ steps.pr-closed.outputs.issues }}"
@@ -52,7 +52,7 @@ jobs:
           ORG_NAME: 'nestjs'
           REPO_NAME: 'nest'
           AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Display amount of prs/issues
+      - name: Display amount of total prs/issues
         run: |
           echo "The total prs ${{ steps.pr-total.outputs.prs }}"
           echo "The total issues ${{ steps.pr-total.outputs.issues }}"
