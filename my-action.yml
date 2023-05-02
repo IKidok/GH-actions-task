@@ -1,4 +1,4 @@
-name: 'Get prs/issues count'
+name: 'Get prs/issues count and output'
 inputs:
   ORG_NAME:
     required: true
