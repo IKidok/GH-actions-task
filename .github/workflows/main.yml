@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: Get open prs/issues count
-        id: node-exec
+        id: pr-open
         uses: ./
         with:
           ORG_NAME: 'nestjs'
@@ -24,28 +24,28 @@ jobs:
           STATE: 'open'
       - name: Display amount of prs/issues
         run: |
-          echo "The total open prs ${{ steps.node-exec.outputs.prs }}"
-          echo "The total open issues ${{ steps.node-exec.outputs.issues }}"
+          echo "The total open prs ${{ steps.pr-open.outputs.prs }}"
+          echo "The total open issues ${{ steps.pr-open.outputs.issues }}"
 
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Get closed prs/issues count
-        id: node-exec
+        id: pr-closed
         uses: ./
         with:
           ORG_NAME: 'nestjs'
           REPO_NAME: 'nest'
           AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          STATE: 'open'
+          STATE: 'closed'
       - name: Display amount of prs/issues
         run: |
-          echo "The total closed prs ${{ steps.node-exec.outputs.prs }}"
-          echo "The total closed issues ${{ steps.node-exec.outputs.issues }}"
+          echo "The total closed prs ${{ steps.pr-closed.outputs.prs }}"
+          echo "The total closed issues ${{ steps.pr-closed.outputs.issues }}"
 
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Get prs/issues count
-        id: node-exec
+        id: pr-total
         uses: ./
         with:
           ORG_NAME: 'nestjs'
@@ -53,13 +53,13 @@ jobs:
           AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Display amount of prs/issues
         run: |
-          echo "The total prs ${{ steps.node-exec.outputs.prs }}"
-          echo "The total issues ${{ steps.node-exec.outputs.issues }}"
+          echo "The total prs ${{ steps.pr-total.outputs.prs }}"
+          echo "The total issues ${{ steps.pr-total.outputs.issues }}"
 
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Get prs/issues count
-        id: node-exec
+        id: pr-since
         uses: ./
         with:
           ORG_NAME: 'nestjs'
@@ -68,5 +68,5 @@ jobs:
           SINCE: '2023-04-02T10:03:20Z'
       - name: Display amount of prs/issues opened since
         run: |
-          echo "The total prs opened since ${{ env.SINCE }} ${{ steps.node-exec.outputs.prs }}"
-          echo "The total issues opened since ${{ env.SINCE }} ${{ steps.node-exec.outputs.issues }}"
+          echo "The total prs opened since ${{ env.SINCE }} ${{ steps.pr-since.outputs.prs }}"
+          echo "The total issues opened since ${{ env.SINCE }} ${{ steps.pr-since.outputs.issues }}"
