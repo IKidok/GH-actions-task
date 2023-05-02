@@ -13,6 +13,35 @@ jobs:
         node-version: [16.x]
 
     steps:
+
+      - name: Get open prs/issues count
+        id: node-exec
+        uses: ./
+        with:
+          ORG_NAME: 'nestjs'
+          REPO_NAME: 'nest'
+          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STATE: 'open'
+      - name: Display amount of prs/issues
+        run: |
+          echo "The total open prs ${{ steps.node-exec.outputs.prs }}"
+          echo "The total open issues ${{ steps.node-exec.outputs.issues }}"
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Get closed prs/issues count
+        id: node-exec
+        uses: ./
+        with:
+          ORG_NAME: 'nestjs'
+          REPO_NAME: 'nest'
+          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STATE: 'open'
+      - name: Display amount of prs/issues
+        run: |
+          echo "The total closed prs ${{ steps.node-exec.outputs.prs }}"
+          echo "The total closed issues ${{ steps.node-exec.outputs.issues }}"
+
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Get prs/issues count
@@ -26,3 +55,18 @@ jobs:
         run: |
           echo "The total prs ${{ steps.node-exec.outputs.prs }}"
           echo "The total issues ${{ steps.node-exec.outputs.issues }}"
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Get prs/issues count
+        id: node-exec
+        uses: ./
+        with:
+          ORG_NAME: 'nestjs'
+          REPO_NAME: 'nest'
+          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SINCE: '2023-04-02T10:03:20Z'
+      - name: Display amount of prs/issues opened since
+        run: |
+          echo "The total prs opened since ${{ env.SINCE }} ${{ steps.node-exec.outputs.prs }}"
+          echo "The total issues opened since ${{ env.SINCE }} ${{ steps.node-exec.outputs.issues }}"

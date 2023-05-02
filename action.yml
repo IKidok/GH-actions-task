@@ -12,6 +12,10 @@ inputs:
   AUTH_TOKEN:
     required: true
     description: 'github auth token'
+  SINCE:
+    description: 'since date in ISO format'
+  STATE:
+    description: 'state of issue/pr'
 outputs:
   issues:
     description: 'amount of open issues'
