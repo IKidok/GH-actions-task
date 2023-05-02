@@ -13,7 +13,8 @@ jobs:
         node-version: [16.x]
 
     steps:
-
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Get open prs/issues count
         id: pr-open
         uses: ./
