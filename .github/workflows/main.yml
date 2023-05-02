@@ -27,6 +27,6 @@ jobs:
       - run: npm run start ${{ env.ORG_NAME }} ${{ env.REPO_NAME }} ${{ secrets.GITHUB_TOKEN }}
 
       - name: Display amount of prs/issues
-        run: |
+      - run: |
           echo "The total prs ${{ steps.node-exec.outputs.prs }}"
           echo "The total issues ${{ steps.node-exec.outputs.issues }}"
