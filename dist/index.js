@@ -42166,16 +42166,28 @@ const fetchIssues = async (auth_token, orgName, repoName, state = 'open', since 
   const totalIssues = [];
   let result = { length: 100 };
   while (result.length === 100) {
-    result = (await octokit.request(
-      `GET /repos/{org}/{repo}/issues?per_page=100&page=${ (totalIssues.length / 100) + 1 }&state={state}` + since ? `&since={since}` :  ``, {
-      org: orgName,
-      repo: repoName,
-      state,
-      since: since ?? undefined,
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28'
-      }
-    })).data;
+    if (!since) {
+      result = (await octokit.request(
+        `GET /repos/{org}/{repo}/issues?per_page=100&page=${ (totalIssues.length / 100) + 1 }&state={state}`, {
+        org: orgName,
+        repo: repoName,
+        state,
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      })).data;
+    } else {
+      result = (await octokit.request(
+        `GET /repos/{org}/{repo}/issues?per_page=100&page=${ (totalIssues.length / 100) + 1 }&state={state}&since={since}`, {
+          org: orgName,
+          repo: repoName,
+          state,
+          since,
+          headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        })).data;
+    }
     totalIssues.push(...result);
   }
   return totalIssues;
