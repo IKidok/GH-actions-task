@@ -8,7 +8,8 @@ const main = async () => {
     const octokit = new Octokit({
       auth: AUTH_TOKEN
     })
-    console.lo
+    console.log(ORG_NAME)
+    console.log(REPO_NAME)
     const totalIssues = [];
     let result = { length: 100 };
     while (result.length === 100) {
