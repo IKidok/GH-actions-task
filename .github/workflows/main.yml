@@ -19,7 +19,7 @@ jobs:
         id: node-exec
         uses: ./
         with:
-          ORG_NAME: 'nest.js'
+          ORG_NAME: 'nestjs'
           REPO_NAME: 'nest'
           AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Display amount of prs/issues
