@@ -42139,7 +42139,7 @@ const main = async () => {
     if (STATE) {
       totalIssues.push(...(await fetchIssues(AUTH_TOKEN, ORG_NAME, REPO_NAME, STATE)))
     } else {
-      console.log(SINCE);
+      console.log('SINCE', SINCE)
       totalIssues.push(...(await fetchIssues(AUTH_TOKEN, ORG_NAME, REPO_NAME, 'open', SINCE)))
       totalIssues.push(...(await fetchIssues(AUTH_TOKEN, ORG_NAME, REPO_NAME, 'closed', SINCE)))
     }
@@ -42171,7 +42171,7 @@ const fetchIssues = async (auth_token, orgName, repoName, state = 'open', since 
       org: orgName,
       repo: repoName,
       state,
-      since,
+      since: since ?? undefined,
       headers: {
         'X-GitHub-Api-Version': '2022-11-28'
       }
