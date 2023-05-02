@@ -19,7 +19,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }} to fetch amount of prs/issues
-        id: node-exec
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -27,6 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Get prs/issues count
+        id: node-exec
         run: npm run start ${{ env.ORG_NAME }} ${{ env.REPO_NAME }} ${{ secrets.GITHUB_TOKEN }}
       - name: Display amount of prs/issues
         run: |
