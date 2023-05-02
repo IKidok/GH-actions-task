@@ -17,10 +17,8 @@ const main = async (_,__, ...arg) => {
           'X-GitHub-Api-Version': '2022-11-28'
         }
       })).data;
-      console.log(result.length)
       totalIssues.push(...result);
     }
-    console.log(totalIssues.length)
     const { issues, prs } = totalIssues.reduce((acc, issue) => {
       [issueType, _] = issue.node_id.split('_');
       if (issueType === 'PR') acc.issues += 1;
@@ -28,8 +26,8 @@ const main = async (_,__, ...arg) => {
       return acc;
     }, { issues: 0, prs: 0 })
 
-    core.setOutput('The amount of open PRs', prs);
-    core.setOutput('The amount of open Issues', issues);
+    core.setOutput('prs', prs);
+    core.setOutput('issues', issues);
 
   } catch (error) {
     core.setFailed(error.message);
