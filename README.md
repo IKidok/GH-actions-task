@@ -8,7 +8,12 @@ This action fetch amount of PRs/issues from public repository. The repository an
 Organisation name. Default `'nestjs'`
 ### `REPO_NAME` 
 Repository name. Default `'nest'`
-### `AUTH_TOKEN` -- 
+### `AUTH_TOKEN`  
+Authorization token 
+### `STATE`  
+State of the issues
+### `SINCE`
+Date from which the issues must be fetched
 
 ## Outputs
 
@@ -29,4 +34,6 @@ with:
     ORG_NAME: 'nestjs'
     REPO_NAME: 'nest'
     AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    STATE: 'open'
+    SINCE: '2023-04-02T10:03:20Z'
 ```
