@@ -1,0 +1,17 @@
+name: 'Get prs/issues count'
+inputs:
+  ORG_NAME:
+    required: true
+    default: nest.js
+  REPO_NAME:
+    required: true
+    default: nest
+  AUTH_TOKEN:
+    required: true
+    default: ${{ secrets.GITHUB_TOKEN }}
+outputs:
+  issues:
+  prs:
+runs:
+  using: 'node16'
+  main: 'index.js'

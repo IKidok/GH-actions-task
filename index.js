@@ -1,8 +1,9 @@
 const core = require('@actions/core');
 const { Octokit } = require("octokit");
-const main = async (_,__, ...arg) => {
-  const [ORG_NAME, REPO_NAME]  = arg;
+const main = async () => {
   const AUTH_TOKEN = core.getInput('AUTH_TOKEN');
+  const ORG_NAME = core.getInput('AUTH_TOKEN');
+  const REPO_NAME = core.getInput('AUTH_TOKEN');
   try {
     const octokit = new Octokit({
       auth: AUTH_TOKEN
@@ -34,4 +35,4 @@ const main = async (_,__, ...arg) => {
   }
 }
 
-main(...process.argv);
+main();

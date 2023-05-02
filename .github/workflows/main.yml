@@ -8,9 +8,6 @@ on:
 jobs:
   total_pr_and_issues:
     runs-on: ubuntu-latest
-    env:
-      ORG_NAME: "nestjs"
-      REPO_NAME: "nest"
     strategy:
       matrix:
         node-version: [16.x]
@@ -27,9 +24,7 @@ jobs:
         run: npm ci
       - name: Get prs/issues count
         id: node-exec
-        with:
-          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run start ${{ env.ORG_NAME }} ${{ env.REPO_NAME }}
+        uses: IKidok/GH-actions-task@v1.0
       - name: Display amount of prs/issues
         run: |
           echo "The total prs ${{ steps.node-exec.outputs.prs }}"
