@@ -18,6 +18,10 @@ jobs:
       - name: Get prs/issues count
         id: node-exec
         uses: ./
+        with:
+          ORG_NAME: 'nest.js'
+          REPO_NAME: 'nest'
+          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Display amount of prs/issues
         run: |
           echo "The total prs ${{ steps.node-exec.outputs.prs }}"

@@ -1,17 +1,22 @@
-name: 'Get prs/issues count and output'
+name: 'Get prs/issues'
+description: 'Get prs/issues count and output'
 inputs:
   ORG_NAME:
     required: true
-    default: nest.js
+    description: 'organisation name'
+    default: 'nest.js'
   REPO_NAME:
     required: true
-    default: nest
+    description: 'repository name'
+    default: 'nest'
   AUTH_TOKEN:
     required: true
-    default: ${{ secrets.GITHUB_TOKEN }}
+    description: 'github auth token'
 outputs:
   issues:
+    description: 'amount of open issues'
   prs:
+    description: 'amount of open prs'
 runs:
   using: 'node16'
   main: 'index.js'
