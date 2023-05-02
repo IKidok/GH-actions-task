@@ -38,7 +38,7 @@ const fetchIssues = async (auth_token, orgName, repoName, state = 'open', since 
   let result = { length: 100 };
   while (result.length === 100) {
     result = (await octokit.request(
-      `GET /repos/{org}/{repo}/issues?per_page=100&page=${ (totalIssues.length / 100) + 1 }&state={state}${since ? `&since${since}` :  ``}`, {
+      `GET /repos/{org}/{repo}/issues?per_page=100&page=${ (totalIssues.length / 100) + 1 }&state={state}${since ? `&since=${since}` :  ``}`, {
       org: orgName,
       repo: repoName,
       state,
