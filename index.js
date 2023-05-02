@@ -2,12 +2,13 @@ const core = require('@actions/core');
 const { Octokit } = require("octokit");
 const main = async () => {
   const AUTH_TOKEN = core.getInput('AUTH_TOKEN');
-  const ORG_NAME = core.getInput('AUTH_TOKEN');
-  const REPO_NAME = core.getInput('AUTH_TOKEN');
+  const ORG_NAME = core.getInput('ORG_NAME');
+  const REPO_NAME = core.getInput('REPO_NAME');
   try {
     const octokit = new Octokit({
       auth: AUTH_TOKEN
     })
+    console.lo
     const totalIssues = [];
     let result = { length: 100 };
     while (result.length === 100) {
